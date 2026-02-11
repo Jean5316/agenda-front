@@ -106,6 +106,11 @@ Autorização por token
 
 ➡️ Repositório da API: https://github.com/Jean5316/API_AGENDA
 
+### Executar frontend + backend
+```bash
+npm run dev
+```
+
 📌 Próximos passos
  CRUD de contatos
 
