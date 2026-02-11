@@ -1,59 +1,123 @@
-# AgendaFront
+# 📌 Angular Agenda – Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.3.
+Frontend desenvolvido em **Angular 21** consumindo uma **API .NET com autenticação JWT**.  
+O projeto implementa **login**, **proteção de rotas**, **interceptor HTTP** e está preparado para evolução do **CRUD**.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Tecnologias utilizadas
 
-```bash
+- Angular 21 (Standalone Components)
+- TypeScript
+- Angular Router
+- HttpClient
+- JWT (JSON Web Token)
+- AuthGuard
+- HTTP Interceptor
+- Git & GitHub
+
+---
+
+## 🔐 Funcionalidades implementadas
+
+- ✅ Login com autenticação JWT
+- ✅ Armazenamento do token via Cookies
+- ✅ Interceptor para envio automático do token
+- ✅ Proteção de rotas com AuthGuard
+- ✅ Integração com API .NET
+- ⏳ CRUD (em desenvolvimento)
+
+---
+
+## 📂 Estrutura do projeto
+
+```text
+src/
+ ├── app/
+ │   ├── core/
+ │   │   ├── guards/
+ │   │   │   └── auth.guard.ts
+ │   │   ├── interceptors/
+ │   │   │   └── auth.interceptor.ts
+ │   │   └── services/
+ │   │       └── auth.service.ts
+ │   ├── pages/
+ │   │   └── login/
+ │   ├── app.routes.ts
+ │   └── app.component.ts
+ ├── environments/
+ └── main.ts
+
+
+🔄 Fluxo de autenticação
+Usuário informa email e senha
+
+Frontend envia para a API /api/Auth/login
+
+API retorna um JWT
+
+Token é armazenado em cookies
+
+Interceptor adiciona o token no header:
+
+Authorization: Bearer TOKEN
+AuthGuard valida acesso às rotas protegidas
+
+
+
+🛡️ Rotas protegidas
+Exemplo:
+
+{
+  path: 'contatos',
+  canActivate: [AuthGuard],
+  loadComponent: () =>
+    import('./pages/contatos/contatos.component')
+      .then(m => m.ContatosComponent)
+}
+
+
+⚙️ Configuração do ambiente
+Arquivo environment.ts:
+
+export const environment = {
+  apiUrl: 'http://localhost:5189/api'
+};
+
+
+▶️ Como executar o projeto
+1️⃣ Instalar dependências
+npm install
+2️⃣ Rodar o projeto
 ng serve
-```
+Acesse:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+http://localhost:4200
 
-## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+🔗 Backend
+Este frontend consome uma API desenvolvida em ASP.NET Core, com:
 
-```bash
-ng generate component component-name
-```
+JWT
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Login
 
-```bash
-ng generate --help
-```
+Autorização por token
 
-## Building
+➡️ Repositório da API: https://github.com/Jean5316/API_AGENDA
 
-To build the project run:
+📌 Próximos passos
+ CRUD de contatos
 
-```bash
-ng build
-```
+ Logout
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+ Refresh Token
 
-## Running unit tests
+ Tratamento global de erros
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+ Layout responsivo
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+👤 Autor
+Desenvolvido por Jean Carlo
+📧 Email: jean@jean.com
+💻 GitHub: https://github.com/Jean5316
