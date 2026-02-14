@@ -1,1 +1,16 @@
-<p>contatos works!</p>
+<h2>Minha Lista Protegida</h2>
+
+    @if (contatos(); as lista) {
+      <ul>
+        @for (item of lista; track item.id) {
+          <li>{{ item.nome }}</li>
+          <li>{{ item.telefone }}</li>
+          <li>{{ item.email }}</li>
+          <li>{{ item.categoria }}</li>
+          <li>{{ item.favorito }}</li>
+        }
+      </ul>
+    } @else {
+      <p>Carregando dados com JWT...</p>
+    }
+  
