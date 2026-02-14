@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth';
@@ -15,13 +15,14 @@ export class Login {
   email = '';
   senha = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  private authService = inject(AuthService)
+  private router = inject(Router)
 
   login() {
     this.authService.login(this.email, this.senha).subscribe(
       {
-        next: (response) => {
-          localStorage.setItem('token', response.token);
+        next: (res) => {
+          this.authService.saveToken(res.token);
           alert('Login bem-sucedido!');
           this.router.navigate(['/contatos']);
         },

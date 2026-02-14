@@ -1,16 +1,37 @@
-<h2>Minha Lista Protegida</h2>
+<h2>Lista de Clientes</h2>
 
-    @if (contatos(); as lista) {
-      <ul>
-        @for (item of lista; track item.id) {
-          <li>{{ item.nome }}</li>
-          <li>{{ item.telefone }}</li>
-          <li>{{ item.email }}</li>
-          <li>{{ item.categoria }}</li>
-          <li>{{ item.favorito }}</li>
-        }
-      </ul>
-    } @else {
-      <p>Carregando dados com JWT...</p>
+<button [routerLink]="['/contatos/criarContato']" class="btn">Novo Contato</button>
+<button (click)="logout()" class="btn">Sair</button>
+<br>
+<br>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Telefone</th>
+      <th>Email</th>
+      <th>Categoria</th>
+      <th>Favorito</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(cliente of Clientes(); track cliente.id){
+      <tr>
+      <td>{{ cliente.id }}</td>
+      <td data-label="Nome">{{ cliente.nome }}</td>
+      <td data-label="Nome">{{ cliente.telefone }}</td>
+      <td data-label="Nome">{{ cliente.email }}</td>
+      <td data-label="Nome">{{ cliente.categoria }}</td>
+      <td class="material-icons" [style.color]="cliente.favorito ? 'green' : 'red'">{{ cliente.favorito ? 'check_box' : 'cancel' }}</td>
+      <td><button [routerLink]="['/clientes/editar']" class="btn">Editar</button></td>
+      <td><button type="button" class="btn">Excluir</button></td>
+    </tr>
     }
-  
+    
+  </tbody>
+</table>

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { Cliente } from '../model/cliente';
 HttpClient
 
 @Injectable({
@@ -11,6 +12,10 @@ export class ClienteService {
 
   getContatos(){
     return this.http.get<any[]>(this.api)
+  }
+
+  criarContato(cliente: Cliente){
+    return this.http.post<Cliente>(this.api, cliente)
   }
 
 }

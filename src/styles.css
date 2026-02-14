@@ -1,1 +1,182 @@
-/* You can add global styles to this file, and also import other style files */
+/* ===== RESET BÁSICO ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== BASE ===== */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f9;
+  color: #333;
+  padding: 20px;
+}
+
+/* ===== CONTAINER PADRÃO ===== */
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* ===== TÍTULOS ===== */
+h1, h2, h3 {
+  margin-bottom: 20px;
+}
+
+/* ===== FORMULÁRIOS ===== */
+form {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  max-width: 600px;
+  margin: auto;
+}
+
+form p {
+  margin: 12px 0 6px;
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #1976d2;
+  box-shadow: 0 0 4px rgba(25, 118, 210, 0.3);
+}
+
+/* Campo inválido */
+input.ng-invalid.ng-touched {
+  border-color: #e53935;
+  background-color: #fff5f5;
+}
+
+.error-message {
+  color: #e53935;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+/* ===== BOTÕES ===== */
+.btn {
+  width: 160px;
+  height: 40px;
+  border-radius: 6px;
+  border: none;
+  background-color: #1976d2;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+  margin-right: 10px;
+}
+
+.btn:hover {
+  background-color: #125aa3;
+}
+
+.btn:disabled {
+  background-color: #90caf9;
+  cursor: not-allowed;
+}
+
+/* ===== TABELAS ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+thead {
+  background-color: #1976d2;
+  color: white;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+tbody tr {
+  border-bottom: 1px solid #eee;
+  transition: 0.2s;
+}
+
+tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.material-icons {
+  vertical-align: middle;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+
+/* Tablets */
+@media (max-width: 768px) {
+
+  body {
+    padding: 10px;
+  }
+
+  .btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  form {
+    padding: 15px;
+  }
+
+  th, td {
+    padding: 8px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    margin-bottom: 15px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  td {
+    padding: 8px 5px;
+    text-align: right;
+    position: relative;
+  }
+
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 5px;
+    font-weight: bold;
+    text-align: left;
+  }
+}
