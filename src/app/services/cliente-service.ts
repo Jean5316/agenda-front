@@ -14,6 +14,10 @@ export class ClienteService {
     return this.http.get<any[]>(this.api)
   }
 
+  getContatosbyId(id: number){
+    return this.http.get<Cliente>(`${this.api}/${id}`)
+  }
+
   criarContato(cliente: Cliente){
     return this.http.post<Cliente>(this.api, cliente)
   }

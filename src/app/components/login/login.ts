@@ -23,11 +23,11 @@ export class Login {
       {
         next: (res) => {
           this.authService.saveToken(res.token);
-          alert('Login bem-sucedido!');
+          console.log('Login bem-sucedido!');
           this.router.navigate(['/contatos']);
         },
         error: () => {
-          alert('Login Invalido!');
+          console.log('Login Invalido!');
         }
       }
         
