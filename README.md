@@ -1,128 +1,157 @@
-# 📌 Angular Agenda – Frontend
+# 📅 Agenda Front – Angular
 
-Frontend desenvolvido em **Angular 21** consumindo uma **API .NET com autenticação JWT**.  
-O projeto implementa **login**, **proteção de rotas**, **interceptor HTTP** e está preparado para evolução do **CRUD**.
+Frontend desenvolvido em **Angular (Standalone Components)** para consumir uma API ASP.NET Core com autenticação JWT.
+
+O sistema permite autenticação de usuários e gerenciamento de contatos protegidos por token.
 
 ---
 
-## 🚀 Tecnologias utilizadas
+## 🚀 Tecnologias Utilizadas
 
-- Angular 21 (Standalone Components)
+- Angular
 - TypeScript
 - Angular Router
 - HttpClient
 - JWT (JSON Web Token)
 - AuthGuard
 - HTTP Interceptor
-- Git & GitHub
+- Standalone Components
 
 ---
 
-## 🔐 Funcionalidades implementadas
+## 📂 Estrutura do Projeto
 
-- ✅ Login com autenticação JWT
-- ✅ Armazenamento do token via Cookies
-- ✅ Interceptor para envio automático do token
-- ✅ Proteção de rotas com AuthGuard
-- ✅ Integração com API .NET
-- ⏳ CRUD (em desenvolvimento)
-
----
-
-## 📂 Estrutura do projeto
-
-```text
-src/
- ├── app/
- │   ├── core/
- │   │   ├── guards/
- │   │   │   └── auth.guard.ts
- │   │   ├── interceptors/
- │   │   │   └── auth.interceptor.ts
- │   │   └── services/
- │   │       └── auth.service.ts
- │   ├── pages/
- │   │   └── login/
- │   ├── app.routes.ts
- │   └── app.component.ts
- ├── environments/
- └── main.ts
-
-
-🔄 Fluxo de autenticação
-Usuário informa email e senha
-
-Frontend envia para a API /api/Auth/login
-
-API retorna um JWT
-
-Token é armazenado em cookies
-
-Interceptor adiciona o token no header:
-
-Authorization: Bearer TOKEN
-AuthGuard valida acesso às rotas protegidas
-
-
-
-🛡️ Rotas protegidas
-Exemplo:
-
-{
-  path: 'contatos',
-  canActivate: [AuthGuard],
-  loadComponent: () =>
-    import('./pages/contatos/contatos.component')
-      .then(m => m.ContatosComponent)
-}
-
-
-⚙️ Configuração do ambiente
-Arquivo environment.ts:
-
-export const environment = {
-  apiUrl: 'http://localhost:5189/api'
-};
-
-
-▶️ Como executar o projeto
-1️⃣ Instalar dependências
-npm install
-2️⃣ Rodar o projeto
-ng serve
-Acesse:
-
-http://localhost:4200
-
-
-🔗 Backend
-Este frontend consome uma API desenvolvida em ASP.NET Core, com:
-
-JWT
-
-Login
-
-Autorização por token
-
-➡️ Repositório da API: https://github.com/Jean5316/API_AGENDA
-
-### Executar frontend + backend
-```bash
-npm run dev
+```
+/
+├── .vscode/
+├── public/
+├── src/
+│   ├── app/
+│   │   ├── core/
+│   │   │   ├── guards/
+│   │   │   │   └── auth.guard.ts
+│   │   │   ├── interceptors/
+│   │   │   │   └── auth.interceptor.ts
+│   │   │   └── services/
+│   │   │       └── auth.service.ts
+│   │   ├── pages/
+│   │   │   ├── login/
+│   │   │   │   ├── login.component.ts
+│   │   │   │   ├── login.component.html
+│   │   │   └── contatos/
+│   │   │       ├── contatos.component.ts
+│   │   │       ├── contatos.component.html
+│   │   ├── app.routes.ts
+│   │   └── app.component.ts
+│   ├── environments/
+│   │   ├── environment.ts
+│   │   └── environment.prod.ts
+│   ├── main.ts
+├── angular.json
+├── package.json
+├── tsconfig.json
+└── README.md
 ```
 
-📌 Próximos passos
- CRUD de contatos
+---
 
- Logout
+## 🔐 Funcionalidades
 
- Refresh Token
+- ✔ Login com autenticação JWT
+- ✔ Armazenamento do token
+- ✔ Interceptor para envio automático do token no Header
+- ✔ Proteção de rotas com AuthGuard
+- ✔ Página de contatos protegida
+- ⏳ CRUD completo em evolução
 
- Tratamento global de erros
+---
 
- Layout responsivo
+## 🔄 Fluxo de Autenticação
 
-👤 Autor
-Desenvolvido por Jean Carlo
-📧 Email: jean@jean.com
-💻 GitHub: https://github.com/Jean5316
+1. Usuário envia email e senha
+2. Frontend faz requisição para API (`/api/Auth/login`)
+3. API retorna um JWT
+4. Token é armazenado no navegador
+5. Interceptor adiciona automaticamente no header:
+
+```
+Authorization: Bearer <TOKEN>
+```
+
+6. AuthGuard impede acesso a rotas sem autenticação
+
+---
+
+## 🛠 Como Rodar o Projeto
+
+### 1️⃣ Clonar o repositório
+
+```
+git clone https://github.com/Jean5316/agenda-front.git
+```
+
+### 2️⃣ Instalar dependências
+
+```
+npm install
+```
+
+### 3️⃣ Executar o projeto
+
+```
+ng serve
+```
+
+Acesse:
+
+```
+http://localhost:4200
+```
+
+---
+
+## ⚙ Configuração da API
+
+Verifique o arquivo:
+
+```
+src/environments/environment.ts
+```
+
+Certifique-se que a URL da API está correta:
+
+```ts
+export const environment = {
+  apiUrl: 'https://localhost:5001'
+};
+```
+
+---
+
+## 🧱 Backend Relacionado
+
+API desenvolvida em ASP.NET Core com JWT.
+
+[text](https://github.com/Jean5316/API_AGENDA)
+
+---
+
+## 📌 Próximas Melhorias
+
+- [ ] CRUD completo de contatos
+- [ ] Refresh Token
+- [ ] Tratamento global de erros
+- [ ] Deploy em produção
+
+---
+
+## 👨‍💻 Autor
+
+Jean Carlo  
+GitHub: https://github.com/Jean5316
+
+---
+
+## 📄 Licença
+
+Este projeto está em desenvolvimento para fins de estudo.
