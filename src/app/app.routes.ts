@@ -10,7 +10,7 @@ export const routes: Routes = [
   { path: 'login', component: Login },
   { path: 'contatos', component: Contatos, canActivate: [authGuard]},
   { path: 'contatos/criarContato', component: CriarContato, canActivate: [authGuard]},
-  { path: 'contados/editarContato', component: EditarContato, canActivate: [authGuard] }
+  { path: 'contatos/editarContato/:id', component: EditarContato, canActivate: [authGuard] }
   
   
 ];

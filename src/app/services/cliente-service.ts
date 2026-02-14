@@ -18,4 +18,8 @@ export class ClienteService {
     return this.http.post<Cliente>(this.api, cliente)
   }
 
+  editarContato(cliente: Cliente){
+    return this.http.put<Cliente>(`${this.api}/AtualizarContato/${cliente.id}`, cliente)
+  }
+
 }

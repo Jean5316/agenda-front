@@ -16,6 +16,7 @@ export class CriarContato {
 
   //inicição da instancia da model
   cliente: Cliente = {
+    id: 0,
     nome: '',
     telefone: '',
     email: '',

@@ -28,7 +28,7 @@
       <td data-label="Nome">{{ cliente.email }}</td>
       <td data-label="Nome">{{ cliente.categoria }}</td>
       <td class="material-icons" [style.color]="cliente.favorito ? 'green' : 'red'">{{ cliente.favorito ? 'check_box' : 'cancel' }}</td>
-      <td><button [routerLink]="['/clientes/editar']" class="btn">Editar</button></td>
+      <td><button [routerLink]="['/contatos/editarContato', cliente.id]" class="btn">Editar</button></td>
       <td><button type="button" class="btn">Excluir</button></td>
     </tr>
     }
