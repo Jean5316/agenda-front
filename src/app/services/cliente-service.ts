@@ -11,7 +11,7 @@ export class ClienteService {
   private readonly api = 'http://localhost:5189/api/Contatos'
 
   getContatos(){
-    return this.http.get<any[]>(this.api)
+    return this.http.get<Cliente[]>(this.api)
   }
 
   getContatosbyId(id: number){
@@ -24,6 +24,10 @@ export class ClienteService {
 
   editarContato(cliente: Cliente){
     return this.http.put<Cliente>(`${this.api}/AtualizarContato/${cliente.id}`, cliente)
+  }
+
+  excluirContato(id: number){
+    return this.http.delete(`${this.api}/DeletarContato/${id}`)
   }
 
 }
