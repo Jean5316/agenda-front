@@ -1,28 +1,31 @@
-<form #formRef="ngForm" (ngSubmit)="salvar(formRef)">
+@if(cliente(); as c){
+    <form #formRef="ngForm" (ngSubmit)="salvar(formRef)">
     
     <p>Nome</p>
-    <input type="text" name="Nome" id="Nome" [(ngModel)]="cliente.nome" #nomeRef="ngModel" required>
+    <input type="text" name="Nome" id="Nome" [(ngModel)]="c.nome" #nomeRef="ngModel" required>
     @if (nomeRef.invalid && nomeRef.touched) {
         <p style="color: red;">Nome Obrigatório</p>
     }
 
     <p>Telefone</p>
-    <input type="text" name="telefone" id="telefone" [(ngModel)]="cliente.telefone" #telefoneRef="ngModel" required>
+    <input type="text" name="telefone" id="telefone" [(ngModel)]="c.telefone" #telefoneRef="ngModel" required>
     @if (telefoneRef.invalid && telefoneRef.touched) {
         <p style="color: red;">Telefone Obrigatório</p>
     }
 
     <p>Email</p>
-    <input type="text" name="email" id="email" [(ngModel)]="cliente.email">
+    <input type="text" name="email" id="email" [(ngModel)]="c.email">
 
 
     <p>Categoria</p>
-    <input type="text" name="categoria" id="categoria" [(ngModel)]="cliente.categoria">
+    <input type="text" name="categoria" id="categoria" [(ngModel)]="c.categoria">
 
     <p>Favorito</p>
-    <input type="checkbox" name="favorito" id="favorito" [(ngModel)]="cliente.favorito"><br><br>
+    <input type="checkbox" name="favorito" id="favorito" [(ngModel)]="c.favorito">
+    <br><br>
 
-    <button type="submit" [disabled]="formRef.invalid" class="btn">Criar Contato</button><br><br>
+    <button type="submit" [disabled]="formRef.invalid" class="btn">Criar Contato</button>
     <button type="button" (click)="voltar()" class="btn">Cancelar</button>
 
 </form>
+}

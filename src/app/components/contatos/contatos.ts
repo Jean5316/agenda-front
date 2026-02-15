@@ -22,6 +22,10 @@ export class Contatos {
     this.authService.logout();
   }
 
+  excluir(){
+    
+  }
+
 
 
 

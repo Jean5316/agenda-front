@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal, Signal } from '@angular/core';
 import { ClienteService } from '../../services/cliente-service';
 import { Cliente } from '../../model/cliente';
 import { Router } from '@angular/router';
@@ -14,8 +14,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class CriarContato {
 
-  //inicição da instancia da model
-  cliente: Cliente = {
+  //inicição da instancia da model com signal
+  cliente = signal<Cliente>({
     id: 0,
     nome: '',
     telefone: '',
@@ -23,7 +23,7 @@ export class CriarContato {
     categoria: '',
     favorito: false,
     
-  }
+  }) 
 
   //Injeções de Dependencia
   private clienteService = inject(ClienteService)
@@ -36,7 +36,7 @@ export class CriarContato {
       return
     }
     //chama o service e cria o usuario
-    this.clienteService.criarContato(this.cliente).subscribe(() => {
+    this.clienteService.criarContato(this.cliente()).subscribe(() => {
       //retorna para lista de clientes
       this.router.navigate(['/contatos'])
       
