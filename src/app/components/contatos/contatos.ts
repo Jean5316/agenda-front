@@ -41,7 +41,14 @@ export class Contatos {
   }
 
   buscarFavoritos(){
-    
+    this.clienteService.getContatosFavoritos().subscribe({
+      next: (res) => {
+        this.Clientes.set(res)
+      },
+      error: () => {
+        this.erro.set("Erro ao carregar Favoritos")
+      }
+    })
   }
 
   logout(){

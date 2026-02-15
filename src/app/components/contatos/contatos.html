@@ -10,7 +10,6 @@
 
 <button [routerLink]="['/contatos/criarContato']" class="btn">Novo Contato</button>
 <button (click)="logout()" class="btn">Sair</button>
-<button class="btn" (click)="buscarFavoritos()">Favoritos</button>
 <br>
 <br>
 
@@ -44,3 +43,7 @@
     
   </tbody>
 </table>
+
+<br><br>
+<button class="btn" (click)="buscarFavoritos()">Favoritos</button>
+<button class="btn" (click)="carregarClientes()">Todos Clientes</button>

@@ -18,6 +18,10 @@ export class ClienteService {
     return this.http.get<Cliente>(`${this.api}/${id}`)
   }
 
+  getContatosFavoritos(){
+    return this.http.get<Cliente[]>(`${this.api}/favoritos`)
+  }
+
   criarContato(cliente: Cliente){
     return this.http.post<Cliente>(this.api, cliente)
   }
