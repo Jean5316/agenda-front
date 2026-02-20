@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class CriarContato {
 
-  //inicição da instancia da model com signal
+  //Iniciação da instancia da model com signal
   cliente = signal<Cliente>({
     id: 0,
     nome: '',

@@ -2,13 +2,13 @@
     <form #formRef="ngForm" (ngSubmit)="salvar(formRef)">
     
     <p>Nome</p>
-    <input type="text" name="Nome" id="Nome" [(ngModel)]="c.nome" #nomeRef="ngModel" required>
+    <input type="text" name="Nome" id="Nome" [(ngModel)]="c.nome" #nomeRef="ngModel" required minleght="3" maxlength="100">
     @if (nomeRef.invalid && nomeRef.touched) {
         <p style="color: red;">Nome Obrigatório</p>
     }
 
     <p>Telefone</p>
-    <input type="text" name="telefone" id="telefone" [(ngModel)]="c.telefone" #telefoneRef="ngModel" required>
+    <input type="text" name="telefone" id="telefone" [(ngModel)]="c.telefone" #telefoneRef="ngModel" required minlenght="10" maxlength="20">
     @if (telefoneRef.invalid && telefoneRef.touched) {
         <p style="color: red;">Telefone Obrigatório</p>
     }

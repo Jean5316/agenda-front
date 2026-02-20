@@ -1,0 +1,47 @@
+📌 Próximas Funções – agenda-front (Angular 21)
+
+🔥 PRIORIDADE ALTA
+
+ Implementar logout completo (limpar token e redirecionar) - OK
+
+ Implementar refresh token automático no interceptor
+
+ Finalizar CRUD completo de contatos (listar, criar, editar, excluir) - OK
+
+ Atualizar lista de contatos via Signals (sem reload de página) - OK
+
+ Implementar validação de formulários com ngModel (required, email, minlength)
+
+ Criar LoadingService global usando signal<boolean>
+
+ Exibir spinner global durante chamadas HTTP
+
+🚀 PRIORIDADE MÉDIA
+
+ Criar sistema de Toast/Alertas (sucesso e erro)
+
+ Implementar busca dinâmica usando computed()
+
+ Implementar paginação (client-side primeiro)
+
+ Melhorar AuthGuard validando expiração do token
+
+ Criar método isAuthenticated() usando signal
+
+ Organizar estrutura de pastas (core, shared, features)
+
+🧠 PRIORIDADE AVANÇADA
+
+ Implementar Dark Mode usando signal
+
+ Criar tela de perfil do usuário
+
+ Permitir alteração de senha
+
+ Criar dashboard inicial com resumo de dados
+
+ Configurar environment para produção
+
+ Fazer deploy (Vercel ou Netlify)
+
+ Criar testes unitários básicos (services e componentes)

@@ -1,39 +1,63 @@
-@if(mensagem()){
-    <h2 style="color: red;">
-        Cliente não encontrado, Redirecionando...
-    </h2>
-}
+@if(Cliente()){
+
+<form #formRef="ngForm" (ngSubmit)="salvar(formRef)">
+
+  <p>Nome</p>
+  <input type="text"
+         name="nome"
+         id="nome"
+         [(ngModel)]="Cliente().nome"
+         #nomeRef="ngModel"
+         required
+         minleght="3"
+         maxlength="100" />
+  @if (nomeRef.invalid && nomeRef.touched) {
+  <p style="color: red;">Nome Obrigatório</p>
+  }
+
+  <p>Telefone</p>
+  <input type="text"
+         name="telefone"
+         id="telefone"
+         [ngModel]="telefone()"
+         (input)="formatarTelefone($any($event.target).value)"
+         #telefoneRef="ngModel"
+         required
+         pattern="^\(\d{2}\)\d{4,5}-\d{4}$"
+         maxlength="15" />
+  @if (!telefoneValido() && telefone().length > 0) {
+  <p style="color:red;">Telefone inválido</p>
+  }
+
+  <!--@if (telefoneRef.invalid && telefoneRef.touched) {
+  <p style="color: red;">Telefone invalido</p>
+  }-->
+
+  <p>Email</p>
+  <input type="email"
+         name="email"
+         id="email"
+         [(ngModel)]="Cliente().email" />
 
 
-@if(Cliente(); as c){
-    <form #formRef="ngForm" (ngSubmit)="salvar(formRef)">
-    
-    <p>Nome</p>
-    <input type="text" name="Nome" id="Nome" [(ngModel)]="c.nome" #nomeRef="ngModel" required>
-    @if (nomeRef.invalid && nomeRef.touched) {
-        <p style="color: red;">Nome Obrigatório</p>
-    }
+  <p>Categoria</p>
+  <input type="text"
+         name="categoria"
+         id="categoria"
+         [(ngModel)]="Cliente().categoria" />
 
-    <p>Telefone</p>
-    <input type="text" name="telefone" id="telefone" [(ngModel)]="c.telefone" #telefoneRef="ngModel" required>
-    @if (telefoneRef.invalid && telefoneRef.touched) {
-        <p style="color: red;">Telefone Obrigatório</p>
-    }
+  <p>Favorito</p>
+  <input type="checkbox"
+         name="favorito"
+         id="favorito"
+         [(ngModel)]="Cliente().favorito" />
+  <br><br>
 
-    <p>Email</p>
-    <input type="text" name="email" id="email" [(ngModel)]="c.email">
-
-
-    <p>Categoria</p>
-    <input type="text" name="categoria" id="categoria" [(ngModel)]="c.categoria">
-
-    <p>Favorito</p>
-    <input type="checkbox" name="favorito" id="favorito" [(ngModel)]="c.favorito">
-    <br><br>
-
-    <button type="submit" [disabled]="formRef.invalid" class="btn">Alterar</button>
-    <button type="button" (click)="voltar()" class="btn">Cancelar</button>
+  <button type="submit" [disabled]="formRef.invalid" class="btn">Alterar</button>
+  <button type="button" (click)="voltar()" class="btn">Cancelar</button>
 
 </form>
+
+
 
 }
