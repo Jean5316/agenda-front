@@ -1,15 +1,22 @@
 <h2>Lista de Clientes</h2>
 @if(carregando()){
-  <p>Carregando...</p>
+<p>Carregando...</p>
 }
 
 @if(erro()){
-  <p style="color: red;">{{ erro() }}</p>
+<p style="color: red;">{{ erro() }}</p>
 }
 
 
 <button [routerLink]="['/contatos/criarContato']" class="btn">Novo Contato</button>
 <button (click)="logout()" class="btn">Sair</button>
+<input
+       type="text"
+       name="buscarClientePorNome"
+       placeholder="Pesquisar por nome..."
+       [(ngModel)]="pesquisa"
+       (input)="buscarPorNome()"
+       maxlength="100" />
 <br>
 <br>
 
@@ -29,7 +36,7 @@
   </thead>
   <tbody>
     @for(cliente of Clientes(); track cliente.id){
-      <tr>
+    <tr>
       <td>{{ cliente.id }}</td>
       <td data-label="Nome">{{ cliente.nome }}</td>
       <td data-label="Nome">{{ cliente.telefone }}</td>
@@ -40,10 +47,11 @@
       <td><button type="button" class="btn" (click)="excluir(cliente.id)">Excluir</button></td>
     </tr>
     }
-    
+
   </tbody>
 </table>
 
-<br><br>
+<br>
+<br>
 <button class="btn" (click)="buscarFavoritos()">Favoritos</button>
 <button class="btn" (click)="carregarClientes()">Todos Clientes</button>

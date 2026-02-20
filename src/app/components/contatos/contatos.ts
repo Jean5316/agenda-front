@@ -1,24 +1,29 @@
 import { Component, inject, signal } from '@angular/core';
 import { ClienteService } from '../../services/cliente-service';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { AuthService } from '../../services/auth';
 import { Cliente } from '../../model/cliente';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-contatos',
-  imports: [RouterLink],
+  imports: [RouterLink, FormsModule],
   templateUrl: './contatos.html',
   styleUrl: './contatos.css',
 })
 export class Contatos {
   private clienteService = inject(ClienteService)
   private authService = inject(AuthService)
+  private router = inject(Router)
 
   Clientes = signal<Cliente[]>([])
   carregando = signal(true);
   erro = signal<string | null>(null)
+
+  pesquisa: string = "";
+  clientesFiltrados = signal<Cliente[]>([])
 
   ngOnInit(){
     this.carregarClientes();
@@ -49,6 +54,22 @@ export class Contatos {
         this.erro.set("Erro ao carregar Favoritos")
       }
     })
+  }
+
+  buscarPorNome() {
+    if (this.pesquisa) {
+      this.clienteService.getContatosByName(this.pesquisa).subscribe({
+        next: (res) => {
+          this.Clientes.set(res)
+        },
+        error: (err) => {
+          alert("Erro ao buscar por nome")
+          console.error("Erro ao buscar por nome", err)
+        }
+      })
+    } else if (this.pesquisa == "") {
+      this.carregarClientes()
+    }
   }
 
   logout(){
