@@ -1,31 +1,39 @@
 @if(cliente(); as c){
-    <form #formRef="ngForm" (ngSubmit)="salvar(formRef)">
-    
-    <p>Nome</p>
-    <input type="text" name="Nome" id="Nome" [(ngModel)]="c.nome" #nomeRef="ngModel" required minleght="3" maxlength="100">
-    @if (nomeRef.invalid && nomeRef.touched) {
-        <p style="color: red;">Nome Obrigatório</p>
-    }
+<form #formRef="ngForm" (ngSubmit)="salvar(formRef)">
 
-    <p>Telefone</p>
-    <input type="text" name="telefone" id="telefone" [(ngModel)]="c.telefone" #telefoneRef="ngModel" required minlenght="10" maxlength="20">
-    @if (telefoneRef.invalid && telefoneRef.touched) {
-        <p style="color: red;">Telefone Obrigatório</p>
-    }
+  <p>Nome</p>
+  <input type="text" name="Nome" id="Nome" [(ngModel)]="c.nome" #nomeRef="ngModel" required minleght="3" maxlength="100">
+  @if (nomeRef.invalid && nomeRef.touched) {
+  <p style="color: red;">Nome Obrigatório</p>
+  }
 
-    <p>Email</p>
-    <input type="text" name="email" id="email" [(ngModel)]="c.email">
+  <p>Telefone</p>
+  <input type="text"
+         name="telefone"
+         id="telefone"
+         [ngModel]="telefone()"
+         (input)="formatarTelefone($any($event.target).value)"
+         #telefoneRef="ngModel"
+         required
+         pattern="^\(\d{2}\)\d{4,5}-\d{4}$"
+         maxlength="15" />
+  @if (!telefoneValido() && telefone().length > 0) {
+  <p style="color:red;">Telefone inválido</p>
+  }
+
+  <p>Email</p>
+  <input type="text" name="email" id="email" [(ngModel)]="c.email">
 
 
-    <p>Categoria</p>
-    <input type="text" name="categoria" id="categoria" [(ngModel)]="c.categoria">
+  <p>Categoria</p>
+  <input type="text" name="categoria" id="categoria" [(ngModel)]="c.categoria">
 
-    <p>Favorito</p>
-    <input type="checkbox" name="favorito" id="favorito" [(ngModel)]="c.favorito">
-    <br><br>
+  <p>Favorito</p>
+  <input type="checkbox" name="favorito" id="favorito" [(ngModel)]="c.favorito">
+  <br><br>
 
-    <button type="submit" [disabled]="formRef.invalid" class="btn">Criar Contato</button>
-    <button type="button" (click)="voltar()" class="btn">Cancelar</button>
+  <button type="submit" [disabled]="formRef.invalid" class="btn">Criar Contato</button>
+  <button type="button" (click)="voltar()" class="btn">Cancelar</button>
 
 </form>
 }

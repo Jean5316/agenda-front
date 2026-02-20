@@ -10,7 +10,7 @@
 
  Atualizar lista de contatos via Signals (sem reload de página) - OK
 
- Implementar validação de formulários com ngModel (required, email, minlength)
+ Implementar validação de formulários com ngModel (required, email, minlength) OK
 
  Criar LoadingService global usando signal<boolean>
 

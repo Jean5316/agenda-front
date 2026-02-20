@@ -23,10 +23,7 @@ export class EditarContato {
   private cd = inject(ChangeDetectorRef)
   
 
-
-  
-
-  Cliente = signal<Cliente>({
+Cliente = signal<Cliente>({
     id: 0,
     nome: '',
     telefone: '',
@@ -67,7 +64,7 @@ export class EditarContato {
 
     // 2️⃣ Limita em 11 dígitos (controle real)
     numero = numero.slice(0, 11);
-    console.log(numero.length, numero);
+    //console.log(numero.length, numero);
 
     let formatado = '';
 
