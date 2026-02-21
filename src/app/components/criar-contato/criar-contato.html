@@ -1,39 +1,112 @@
-@if(cliente(); as c){
-<form #formRef="ngForm" (ngSubmit)="salvar(formRef)">
+<div class="container">
+  <div class="card" style="max-width:600px;margin:auto;">
 
-  <p>Nome</p>
-  <input type="text" name="Nome" id="Nome" [(ngModel)]="c.nome" #nomeRef="ngModel" required minleght="3" maxlength="100">
-  @if (nomeRef.invalid && nomeRef.touched) {
-  <p style="color: red;">Nome Obrigatório</p>
-  }
+    <h2>Novo Contato</h2>
 
-  <p>Telefone</p>
-  <input type="text"
-         name="telefone"
-         id="telefone"
-         [ngModel]="telefone()"
-         (input)="formatarTelefone($any($event.target).value)"
-         #telefoneRef="ngModel"
-         required
-         pattern="^\(\d{2}\)\d{4,5}-\d{4}$"
-         maxlength="15" />
-  @if (!telefoneValido() && telefone().length > 0) {
-  <p style="color:red;">Telefone inválido</p>
-  }
+    @if(cliente(); as c){
 
-  <p>Email</p>
-  <input type="text" name="email" id="email" [(ngModel)]="c.email">
+    <form #formRef="ngForm" (ngSubmit)="salvar(formRef)">
 
+      <!-- NOME -->
+      <div class="form-group">
+        
 
-  <p>Categoria</p>
-  <input type="text" name="categoria" id="categoria" [(ngModel)]="c.categoria">
+        <input
+          type="text"
+          name="nome"
+          [(ngModel)]="c.nome"
+          #nomeRef="ngModel"
+          required
+          placeholder="Nome"
+          minlength="3"
+          maxlength="100"
+        >
 
-  <p>Favorito</p>
-  <input type="checkbox" name="favorito" id="favorito" [(ngModel)]="c.favorito">
-  <br><br>
+        @if (nomeRef.invalid && nomeRef.touched) {
+          <small style="color:red;">
+            Nome obrigatório (mínimo 3 caracteres)
+          </small>
+        }
+      </div>
 
-  <button type="submit" [disabled]="formRef.invalid" class="btn">Criar Contato</button>
-  <button type="button" (click)="voltar()" class="btn">Cancelar</button>
+      <!-- TELEFONE -->
+      <div class="form-group">
+        
 
-</form>
-}
+        <input
+          type="text"
+          name="telefone"
+          [ngModel]="telefone()"
+          (input)="formatarTelefone($any($event.target).value)"
+          required
+          placeholder="Telefone"
+          maxlength="15"
+        >
+
+        @if (!telefoneValido() && telefone().length > 0) {
+          <small style="color:red;">
+            Formato válido: (99)9999-9999 ou (99)99999-9999
+          </small>
+        }
+      </div>
+
+      <!-- EMAIL -->
+      <div class="form-group">
+        
+
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          [(ngModel)]="c.email"
+        >
+      </div>
+
+      <!-- CATEGORIA -->
+      <div class="form-group">
+        
+
+        <input
+          type="text"
+          name="categoria"
+          placeholder="Categoria"
+          [(ngModel)]="c.categoria"
+        >
+      </div>
+
+      <!-- FAVORITO -->
+      <div class="form-group" style="display:flex;align-items:center;gap:10px;">
+        <label>Favorito</label>
+        <input
+          type="checkbox"
+          name="favorito"
+          [(ngModel)]="c.favorito"
+        >
+        
+      </div>
+
+      <!-- BOTÕES -->
+      <div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;">
+        <button
+          type="submit"
+          class="btn btn-success"
+          [disabled]="formRef.invalid || !telefoneValido()"
+        >
+          Criar Contato
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="voltar()"
+        >
+          Cancelar
+        </button>
+      </div>
+
+    </form>
+
+    }
+
+  </div>
+</div>

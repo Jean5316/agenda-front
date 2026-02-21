@@ -1,63 +1,114 @@
-@if(Cliente()){
+<div class="container">
+  <div class="card" style="max-width:600px;margin:auto;">
 
-<form #formRef="ngForm" (ngSubmit)="salvar(formRef)">
+    <h2>{{ Cliente()?.id ? 'Editar Contato' : 'Novo Contato' }}</h2>
 
-  <p>Nome</p>
-  <input type="text"
-         name="nome"
-         id="nome"
-         [(ngModel)]="Cliente().nome"
-         #nomeRef="ngModel"
-         required
-         minleght="3"
-         maxlength="100" />
-  @if (nomeRef.invalid && nomeRef.touched) {
-  <p style="color: red;">Nome Obrigatório</p>
-  }
+    @if(Cliente()) {
 
-  <p>Telefone</p>
-  <input type="text"
-         name="telefone"
-         id="telefone"
-         [ngModel]="telefone()"
-         (input)="formatarTelefone($any($event.target).value)"
-         #telefoneRef="ngModel"
-         required
-         pattern="^\(\d{2}\)\d{4,5}-\d{4}$"
-         maxlength="15" />
-  @if (!telefoneValido() && telefone().length > 0) {
-  <p style="color:red;">Telefone inválido</p>
-  }
+    <form #formRef="ngForm" (ngSubmit)="salvar(formRef)">
 
-  <!--@if (telefoneRef.invalid && telefoneRef.touched) {
-  <p style="color: red;">Telefone invalido</p>
-  }-->
+      <!-- NOME -->
+      <div class="form-group">
+        
 
-  <p>Email</p>
-  <input type="email"
-         name="email"
-         id="email"
-         [(ngModel)]="Cliente().email" />
+        <input
+          type="text"
+          name="nome"
+          [(ngModel)]="Cliente().nome"
+          #nomeRef="ngModel"
+          required
+          minlength="3"
+          maxlength="100"
+        >
 
+        @if (nomeRef.invalid && nomeRef.touched) {
+          <small style="color:red;">
+            Nome obrigatório (mínimo 3 caracteres)
+          </small>
+        }
+      </div>
 
-  <p>Categoria</p>
-  <input type="text"
-         name="categoria"
-         id="categoria"
-         [(ngModel)]="Cliente().categoria" />
+      <!-- TELEFONE -->
+      <div class="form-group">
+        
 
-  <p>Favorito</p>
-  <input type="checkbox"
-         name="favorito"
-         id="favorito"
-         [(ngModel)]="Cliente().favorito" />
-  <br><br>
-
-  <button type="submit" [disabled]="formRef.invalid" class="btn">Alterar</button>
-  <button type="button" (click)="voltar()" class="btn">Cancelar</button>
-
-</form>
-
-
-
+        <input
+          type="text"
+          name="telefone"
+          [ngModel]="telefone()"
+          (input)="formatarTelefone($any($event.target).value)"
+          #telefoneRef="ngModel"
+          required
+          maxlength="15"
+        >
+        @if (telefoneRef.invalid && telefoneRef.touched && telefone().length === 0) {
+  <small style="color:red;">
+    Telefone é obrigatório
+  </small>
 }
+
+        @if (!telefoneValido() && telefone().length > 0) {
+          <small style="color:red;">
+            Formato válido: (99)9999-9999 ou (99)99999-9999
+          </small>
+        }
+      </div>
+
+      <!-- EMAIL -->
+      <div class="form-group">
+       
+
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="Cliente().email"
+        >
+      </div>
+
+      <!-- CATEGORIA -->
+      <div class="form-group">
+        
+
+        <input
+          type="text"
+          name="categoria"
+          [(ngModel)]="Cliente().categoria"
+        >
+      </div>
+
+      <!-- FAVORITO -->
+      <div class="form-group" style="display:flex;align-items:center;gap:10px;">
+        <label>Favorito</label>
+        <input
+          type="checkbox"
+          name="favorito"
+          [(ngModel)]="Cliente().favorito"
+        >
+        
+      </div>
+
+      <!-- BOTÕES -->
+      <div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;">
+        <button
+          type="submit"
+          class="btn btn-success"
+          [disabled]="formRef.invalid || !telefoneValido()"
+        >
+          Salvar
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="voltar()"
+        >
+          Cancelar
+        </button>
+      </div>
+
+    </form>
+
+    }
+
+  </div>
+</div>

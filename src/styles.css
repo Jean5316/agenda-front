@@ -1,157 +1,167 @@
-/* ===== RESET BÁSICO ===== */
+:root {
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --danger: #ef4444;
+  --success: #22c55e;
+  --bg: #f1f5f9;
+  --card-bg: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --radius: 14px;
+  --shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ===== BASE ===== */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f6f9;
-  color: #333;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text-main);
   padding: 20px;
 }
 
-/* ===== CONTAINER PADRÃO ===== */
+/* ===== CONTAINER ===== */
 .container {
   max-width: 1100px;
   margin: auto;
-  padding: 20px;
 }
 
-/* ===== TÍTULOS ===== */
-h1, h2, h3 {
+/* ===== MENUBAR ===== */
+.menubar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
 }
 
-/* ===== FORMULÁRIOS ===== */
-form {
-  background: #ffffff;
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
-  max-width: 600px;
-  margin: auto;
+.menubar input {
+  max-width: 300px;
 }
 
-form p {
-  margin: 12px 0 6px;
+/* ===== CARD ===== */
+.card {
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+/* ===== FORM ===== */
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+label {
+  display: block;
   font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+input,
+select {
   width: 100%;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 14px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 1rem;
   transition: 0.2s;
 }
 
-input:focus {
+input:focus,
+select:focus {
   outline: none;
-  border-color: #1976d2;
-  box-shadow: 0 0 4px rgba(25, 118, 210, 0.3);
-}
-
-/* Campo inválido */
-input.ng-invalid.ng-touched {
-  border-color: #e53935;
-  background-color: #fff5f5;
-}
-
-.error-message {
-  color: #e53935;
-  font-size: 13px;
-  margin-top: 4px;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
 /* ===== BOTÕES ===== */
 .btn {
-  width: 160px;
-  height: 40px;
-  border-radius: 6px;
+  padding: 10px 18px;
+  border-radius: 8px;
   border: none;
-  background-color: #1976d2;
-  color: white;
-  font-weight: 600;
   cursor: pointer;
-  transition: 0.2s ease;
-  margin-right: 10px;
+  font-weight: 600;
+  transition: 0.2s;
+  font-size: 0.9rem;
 }
 
 .btn:hover {
-  background-color: #125aa3;
+  transform: translateY(-2px);
 }
 
-.btn:disabled {
-  background-color: #90caf9;
-  cursor: not-allowed;
-}
-
-/* ===== TABELAS ===== */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #ffffff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
-}
-
-thead {
-  background-color: #1976d2;
+.btn-primary {
+  background: var(--primary);
   color: white;
 }
 
-th, td {
-  padding: 12px;
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: white;
+}
+
+.btn-success {
+  background: var(--success);
+  color: white;
+}
+
+/* ===== TABELA ===== */
+.table {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f8fafc;
+}
+
+th,
+td {
+  padding: 14px;
   text-align: left;
+  border-bottom: 1px solid var(--border);
 }
 
-tbody tr {
-  border-bottom: 1px solid #eee;
-  transition: 0.2s;
+th {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
 
-tbody tr:hover {
-  background-color: #f5f5f5;
-}
-
-.material-icons {
-  vertical-align: middle;
-}
-
-/* ===== RESPONSIVIDADE ===== */
-
-/* Tablets */
+/* ===== RESPONSIVO ===== */
 @media (max-width: 768px) {
 
-  body {
-    padding: 10px;
+  .menubar {
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  .btn {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  form {
-    padding: 15px;
-  }
-
-  th, td {
-    padding: 8px;
-  }
-}
-
-/* Mobile */
-@media (max-width: 480px) {
-
-  table, thead, tbody, th, td, tr {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
     display: block;
   }
 
@@ -160,23 +170,23 @@ tbody tr:hover {
   }
 
   tr {
+    background: white;
     margin-bottom: 15px;
-    background: #fff;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 15px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
   }
 
   td {
-    padding: 8px 5px;
-    text-align: right;
-    position: relative;
+    border: none;
+    padding: 6px 0;
   }
 
   td::before {
     content: attr(data-label);
-    position: absolute;
-    left: 5px;
     font-weight: bold;
-    text-align: left;
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
   }
 }

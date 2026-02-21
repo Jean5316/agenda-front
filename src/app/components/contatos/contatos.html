@@ -1,57 +1,111 @@
-<h2>Lista de Clientes</h2>
-@if(carregando()){
-<p>Carregando...</p>
-}
+<div class="container">
+  <div class="menubar">
+    <h2>Lista de Clientes</h2>
 
-@if(erro()){
-<p style="color: red;">{{ erro() }}</p>
-}
+    <button
+      (click)="logout()"
+      class="btn btn-danger"
+    >Sair</button>
 
+    <button
+      [routerLink]="['/contatos/criarContato']"
+      class="btn btn-primary"
+    >Novo Contato</button>
 
-<button [routerLink]="['/contatos/criarContato']" class="btn">Novo Contato</button>
-<button (click)="logout()" class="btn">Sair</button>
-<input
-       type="text"
-       name="buscarClientePorNome"
-       placeholder="Pesquisar por nome..."
-       [(ngModel)]="pesquisa"
-       (input)="buscarPorNome()"
-       maxlength="100" />
-<br>
-<br>
+    <input
+      type="text"
+      name="buscarClientePorNome"
+      placeholder="Pesquisar por nome..."
+      [(ngModel)]="pesquisa"
+      (input)="buscarPorNome()"
+      maxlength="100"
+    />
+  </div>
 
+  <div class="table">
+    @if(carregando()){
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nome</th>
-      <th>Telefone</th>
-      <th>Email</th>
-      <th>Categoria</th>
-      <th>Favorito</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    @for(cliente of Clientes(); track cliente.id){
-    <tr>
-      <td>{{ cliente.id }}</td>
-      <td data-label="Nome">{{ cliente.nome }}</td>
-      <td data-label="Nome">{{ cliente.telefone }}</td>
-      <td data-label="Nome">{{ cliente.email }}</td>
-      <td data-label="Nome">{{ cliente.categoria }}</td>
-      <td class="material-icons" [style.color]="cliente.favorito ? 'green' : 'red'">{{ cliente.favorito ? 'check_box' : 'cancel' }}</td>
-      <td><button [routerLink]="['/contatos/editarContato', cliente.id]" class="btn">Editar</button></td>
-      <td><button type="button" class="btn" (click)="excluir(cliente.id)">Excluir</button></td>
-    </tr>
+    <p>Carregando...</p>
+
     }
 
-  </tbody>
-</table>
+@if(erro()){
 
-<br>
-<br>
-<button class="btn" (click)="buscarFavoritos()">Favoritos</button>
-<button class="btn" (click)="carregarClientes()">Todos Clientes</button>
+    <p style="color: red;">{{ erro() }}</p>
+
+    }
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+
+          <th>Nome</th>
+
+          <th>Telefone</th>
+
+          <th>Email</th>
+
+          <th>Categoria</th>
+
+          <th>Favorito</th>
+
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for(cliente of Clientes(); track cliente.id){
+
+        <tr>
+          <td>{{ cliente.id }}</td>
+
+          <td data-label="Nome">{{ cliente.nome }}</td>
+
+          <td data-label="Nome">{{ cliente.telefone }}</td>
+
+          <td data-label="Nome">{{ cliente.email }}</td>
+
+          <td data-label="Nome">{{ cliente.categoria }}</td>
+
+          <td
+            class="material-icons"
+            [style.color]="cliente.favorito ? 'green' : 'red'"
+          >
+            {{ cliente.favorito ? 'check_box' : 'cancel' }}
+          </td>
+
+          <td>
+            <button
+              [routerLink]="['/contatos/editarContato', cliente.id]"
+              class="btn btn-primary"
+            >Editar</button>
+          </td>
+
+          <td>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="excluir(cliente.id)"
+            >Excluir</button>
+          </td>
+        </tr>
+
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+    <button
+      class="btn btn-primary"
+      (click)="buscarFavoritos()"
+    >Favoritos</button>
+
+    <button
+      class="btn btn-primary"
+      (click)="carregarClientes()"
+    >Todos Clientes</button>
+  </div>
+</div>

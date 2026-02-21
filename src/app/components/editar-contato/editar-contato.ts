@@ -52,10 +52,10 @@ Cliente = signal<Cliente>({
 
   
 
-  telefoneValido = computed(() => {
-    const numero = this.telefone().replace(/\D/g, '');
-    return numero.length === 10 || numero.length === 11;
-  });
+  telefoneValido() {
+  const regex = /^\(\d{2}\)\d{4,5}-\d{4}$/;
+  return regex.test(this.telefone());
+}
 
   formatarTelefone(valor: string) {
 
