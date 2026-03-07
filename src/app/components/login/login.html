@@ -1,10 +1,17 @@
+@if(erroMessage()){
+  <div [class]="erroMessage()?.includes('Servidor') ? 'alert-critical' : 'alert-warning'">
+    <strong>Atenção:</strong> {{ erroMessage() }}
+    <button (click)="erroMessage.set(null)">OK</button>
+  </div>
+}
 <div class="auth-wrepper">
     <div class="card" style="max-width:400px;margin:auto;">
+
         <h2>LOGIN NA AGENDA</h2>
 
         <form (ngSubmit)="login()">
            <div class="form-group">
-            
+
              <input
                 type="email"
                 placeholder="Digite seu email"
@@ -14,7 +21,7 @@
             >
            </div>
            <div class="form-group">
-            
+
             <input
                 type="password"
                 placeholder="Digite sua senha"
@@ -23,7 +30,7 @@
                 required="required"
             >
            </div>
-            
+
            <button
                 type="submit"
                 class="btn btn-primary"
