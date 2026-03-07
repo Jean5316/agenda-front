@@ -3,6 +3,8 @@ import { provideRouter } from '@angular/router';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { routes } from './app.routes';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
+import { loadingInterceptor } from './interceptors/loading-interceptor';
+
 
 
 export const appConfig: ApplicationConfig = {
@@ -10,7 +12,7 @@ export const appConfig: ApplicationConfig = {
     
     provideRouter(routes),
     provideHttpClient(
-      withInterceptors([AuthInterceptor])
+      withInterceptors([AuthInterceptor, loadingInterceptor])
     ),
     
     
